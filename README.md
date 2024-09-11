@@ -33,7 +33,11 @@ disable verification
 Just use --no-verification or -N option.
 
 ```bash
-$ ./jwt-tool.py --jwk-set-uri <JWKs URI> --no-validate-exp <base64-encoded JWT token string>
+$ ./jwt-tool.py -N --jwk-set-uri <JWKs URI> <base64-encoded JWT token string>
+
+OR
+
+$ ./jwt-tool.py --no-verification --jwk-set-uri <JWKs URI> <base64-encoded JWT token string>
 ```
 
 # License
