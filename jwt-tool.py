@@ -16,7 +16,7 @@ import base64
 
 import jwt
 import json
-from jwt import PyJWKClient, ExpiredSignatureError, InvalidTokenError
+from jwt import PyJWKClient, ExpiredSignatureError, InvalidTokenError, PyJWKClientError
 import urllib
 
 
@@ -55,6 +55,9 @@ def validate_and_decode_jwt_with_jwks(token, jwk_set_uri):
     except InvalidTokenError:
         # Token is invalid
         g_cp.red("Error: invalid token")
+        return (None, None)
+    except PyJWKClientError as e:
+        g_cp.red(f"Error validating signature: {str(e)}")
         return (None, None)
     except urllib.error.URLError:
         g_cp.red("Error: incorrect JWK Set URI")
